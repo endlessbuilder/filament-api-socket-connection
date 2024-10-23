@@ -1,5 +1,6 @@
 import time
 
+from filament_api import cancel_order, get_order_book, submit_limit_order
 from filament_stomp_socket import connect_to_websocket
 
 
@@ -7,24 +8,22 @@ from filament_stomp_socket import connect_to_websocket
 def main():
     # Connect and subscribe to the WebSocket feed
     connect_to_websocket()
-    # Start the heartbeat process to ensure the connection stays alive
-    # handle_heartbeat(conn)
 
     # Wait for WebSocket to establish
-    time.sleep(5)
+    time.sleep(3)
 
-    # # Fetch Order Book using REST API (public)
-    # print("\n>>> get order book\n")
-    # get_order_book()
+    # Fetch Order Book using REST API (public)
+    print("\n>>> get order book\n")
+    get_order_book()
 
-    # # Submit Batch Orders (private)
-    # print("\n>>> submit batch orders\n")
-    # submit_batch_orders()
+    # Submit Batch Orders (private)
+    print("\n>>> submit order\n")
+    order_id = submit_limit_order()
 
-    # # Cancel all orders (private)
-    # time.sleep(10)  # Wait for some time before cancelling
-    # print("\n>>> cancel all orders\n")
-    # cancel_all_orders()
+    # Cancel all orders (private)
+    time.sleep(10)  # Wait for some time before cancelling
+    print("\n>>> cancel order\n")
+    cancel_order(order_id)
 
     # Keep script running to maintain WebSocket connection
     while True:

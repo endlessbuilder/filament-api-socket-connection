@@ -30,14 +30,13 @@ def connect_to_websocket():
     # connection.subscribe(destination="/topic/orderBookState", id="0")
     connection.subscribe(destination="/topic/livefeed", id="0")
 
-    return connection
-
 
 # Function to handle heartbeat
-def handle_heartbeat(conn):
+def handle_heartbeat(connection):
+
     while True:
         try:
-            if not conn.is_connected():
+            if not connection.alive:
                 print(">>> Reconnecting...")
                 connect_to_websocket()
             time.sleep(10)  # Ping every 10 seconds
