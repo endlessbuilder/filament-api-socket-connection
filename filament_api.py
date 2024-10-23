@@ -42,6 +42,7 @@ def get_order_book():
 def submit_limit_order(
     index_token=INDEX_TOKEN, size=100, leverage=1.1, reduceOnly=False
 ):
+    print(f">>> SUBMIT LIMIT ORDER ")
     order_id = str(uuid.uuid4()).replace("-", "")  # Generating a unique order ID
     order_signature = handle_order_signature(
         order_id, SIGNING_KEY
@@ -87,6 +88,7 @@ def submit_limit_order(
 def submit_market_order(
     index_token=INDEX_TOKEN, size=100, leverage=1.1, reduceOnly=False
 ):
+    print(f">>> SUBMIT MARKET ORDER ")
     order_id = str(uuid.uuid4()).replace("-", "")  # Generating a unique order ID
     order_signature = handle_order_signature(
         order_id, SIGNING_KEY
@@ -129,6 +131,7 @@ def submit_market_order(
 
 
 def cancel_order(orderId):
+    print(f">>> CANCEL ORDER {orderId} ")
     payload = {
         "type": "cancel",
         "cancels": [
