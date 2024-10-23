@@ -1,0 +1,5 @@
+pip install -r requirements.txt
+requests
+web3
+websocket-client
+webstompy
